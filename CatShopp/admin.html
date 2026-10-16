@@ -53,19 +53,121 @@
 			</div>
 		</nav>
 		<div class="home-content">
-			<h1>Selamat Datang Admin</h1>
+			<h2 id="text"></h2>
+			<h3 id="date"></h3>
 		</div>
 	</section>
 	<script>
-		let sidebar = document.querySelector(".sidebar");
-		let sidebarBtn = document.querySelector(".sidebarBtn");
-		sidebarBtn.onclick = function () {
-			sidebar.classList.toggle("active");
-			if (sidebar.classList.contains("active")) {
-				sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-			} else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-		};
-	</script>
-</body>
+		<script>
+  // Sidebar
+  const sidebar = document.querySelector(".sidebar");
+  const sidebarBtn = document.querySelector(".sidebarBtn");
 
-</html>
+  if (sidebar && sidebarBtn) {
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else {
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+      }
+    };
+  }
+
+  // Jam & Tanggal + Hari
+  function myFunction() {
+    const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    
+    const now = new Date();
+    const jam = String(now.getHours()).padStart(2, '0');
+    const tanggal = now.getDate();
+    const hari = days[now.getDay()];
+    const bulan = months[now.getMonth()];
+    const tahun = now.getFullYear();
+    let menit = String(now.getMinutes()).padStart(2, '0');
+    let detik = String(now.getSeconds()).padStart(2, '0');
+
+    const dateEl = document.getElementById("date");
+    if (dateEl) {
+      dateEl.textContent = `${hari}, ${tanggal} ${bulan} ${tahun}, ${jam}:${menit}:${detik}`;
+    }
+    
+    setTimeout(myFunction, 1000);
+  }
+
+  // Sapaan
+  window.addEventListener("load", function () {
+    let nama = prompt("Masukkan Nama Anda : ", "Admin");
+    if (!nama || nama.trim() === "") nama = "Admin";
+    
+    const jamSekarang = new Date().getHours();
+    let sapa = "Malam";
+    if (jamSekarang >= 4 && jamSekarang <= 10) sapa = "Pagi";
+    else if (jamSekarang >= 11 && jamSekarang <= 14) sapa = "Siang";
+    else if (jamSekarang >= 15 && jamSekarang <= 18) sapa = "Sore";
+
+    const textEl = document.getElementById("text");
+    if (textEl) {
+      textEl.textContent = `Selamat ${sapa} ${nama}`;
+    }
+    
+    myFunction();
+  });
+</script><script>
+  // Sidebar
+  const sidebar = document.querySelector(".sidebar");
+  const sidebarBtn = document.querySelector(".sidebarBtn");
+
+  if (sidebar && sidebarBtn) {
+    sidebarBtn.onclick = function () {
+      sidebar.classList.toggle("active");
+      if (sidebar.classList.contains("active")) {
+        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+      } else {
+        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+      }
+    };
+  }
+
+  // Jam & Tanggal + Hari
+  function myFunction() {
+    const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    
+    const now = new Date();
+    const jam = String(now.getHours()).padStart(2, '0');
+    const tanggal = now.getDate();
+    const hari = days[now.getDay()];
+    const bulan = months[now.getMonth()];
+    const tahun = now.getFullYear();
+    let menit = String(now.getMinutes()).padStart(2, '0');
+    let detik = String(now.getSeconds()).padStart(2, '0');
+
+    const dateEl = document.getElementById("date");
+    if (dateEl) {
+      dateEl.textContent = `${hari}, ${tanggal} ${bulan} ${tahun}, ${jam}:${menit}:${detik}`;
+    }
+    
+    setTimeout(myFunction, 1000);
+  }
+
+  // Sapaan
+  window.addEventListener("load", function () {
+    let nama = prompt("Masukkan Nama Anda : ", "Admin");
+    if (!nama || nama.trim() === "") nama = "Admin";
+    
+    const jamSekarang = new Date().getHours();
+    let sapa = "Malam";
+    if (jamSekarang >= 4 && jamSekarang <= 10) sapa = "Pagi";
+    else if (jamSekarang >= 11 && jamSekarang <= 14) sapa = "Siang";
+    else if (jamSekarang >= 15 && jamSekarang <= 18) sapa = "Sore";
+
+    const textEl = document.getElementById("text");
+    if (textEl) {
+      textEl.textContent = `Selamat ${sapa} ${nama}`;
+    }
+    
+    myFunction();
+  });
+</script>
